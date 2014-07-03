@@ -11,7 +11,7 @@ var config = {
     beatsmusic: {
         clientID: "38q2wmxsng5k7gdbj5vyq8t6",
         clientSecret: "bjXb8gxAuSUFbeF2wuPWG9dx",
-        callbackURL: "http://localhost:3000/auth/beatsmusic/callback"
+        callbackURL: "http://inv8der.herokuapp.com/auth/beatsmusic/callback"
     }
 };
 
@@ -25,7 +25,7 @@ var plugins = {
     "./plugins/beats-authenticator": config
 };
 
-var server = new Hapi.Server("localhost", 3000, {
+var server = new Hapi.Server({
 	views: {
         engines: { html: "handlebars" },
         path: "./views"
