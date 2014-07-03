@@ -1,0 +1,15 @@
+{
+  "name": "beats-authenticator",
+  "version": "0.0.1",
+  "description": "Authentication plugin for the Beats Music API",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Marc Ryan",
+  "license": "ISC",
+  "dependencies": {
+    "hoek": "^2.3.0",
+    "passport-beatsmusic": "^1.0.2"
+  }
+}
