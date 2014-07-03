@@ -25,7 +25,7 @@ var plugins = {
     "./plugins/beats-authenticator": config
 };
 
-var server = new Hapi.Server("localhost", 80, {
+var server = new Hapi.Server(8000, {
 	views: {
         engines: { html: "handlebars" },
         path: "./views"
