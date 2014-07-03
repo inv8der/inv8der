@@ -25,7 +25,8 @@ var plugins = {
     "./plugins/beats-authenticator": config
 };
 
-var server = new Hapi.Server(8000, {
+var port = Number(process.env.PORT || 5000);
+var server = new Hapi.Server(port, {
 	views: {
         engines: { html: "handlebars" },
         path: "./views"
