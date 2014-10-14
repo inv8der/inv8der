@@ -1,7 +1,7 @@
 {
   "name": "inv8der",
   "version": "0.0.1",
-  "description": "Playing around with the BeatsMusic API",
+  "description": "Personal hub for various projects, services, etc.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -9,13 +9,7 @@
   "author": "Marc Ryan",
   "license": "BSD-2-Clause",
   "dependencies": {
-    "handlebars": "^2.0.0-alpha.4",
-    "hapi": "^4.1.4",
-    "hoek": "^2.3.0",
-    "passport-beatsmusic": "~1.0.2",
-    "request": "^2.36.0",
-    "step": "0.0.5",
-    "travelogue": "^2.0.1",
-    "yar": "^2.2.0"
+    "hapi": "^7.0.0",
+    "wreck": "^5.0.1"
   }
 }
