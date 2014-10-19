@@ -1,0 +1,178 @@
+body {
+	/*background: -webkit-gradient(radial, 50% 50%, 0, 50% 50%, 350, from(#fff), to(#00B2EE));*/
+	background: url('gir-background2.png');
+	background-position: right;
+	background-size: contain;
+	background-repeat: no-repeat;
+	background-color: #1a1a1a;
+}
+
+html, body { 
+	margin: 0; 
+	height: 100%; 
+}
+
+#controls ul {
+	list-style-type: none;
+	padding: 0;
+	margin: 0;
+	margin-bottom: 6px;
+}
+
+#controls li {
+	display: inline;
+}
+
+.container {
+	margin-top: 15%;
+	margin-right: auto;
+	margin-left: auto;
+	width: 200px;
+	height: 200px;
+	position: relative;
+	color: white;
+	font-family: Arial, sans-serif;
+	-webkit-perspective: 1000;
+	-moz-perspective: 1000;
+}
+#cube {
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	-webkit-transform-style: preserve-3d;
+	-webkit-transform: translateZ(-100px) rotate3d(1,0,1,-55deg);
+}
+#cube figure {
+	overflow: hidden;
+	width: 196px;
+	height: 196px;
+	display: block;
+	position: absolute;
+	border: 2px solid white;
+	padding: 0;
+	margin: 0;
+}
+
+#cube header{
+	margin-top: 10px;
+	line-height: 500%;
+	font-size: 200%;
+	font-weight: bold;
+	margin-bottom: 50px;
+	text-align: center;
+}
+
+#cube figure:hover{
+	cursor: pointer;
+}
+
+#cube article {
+	color: #E0EEEE;
+	margin-bottom: 20px;
+	margin-left: 10px;
+	margin-right: 10px;
+	display: none;
+	line-height: normal;
+}
+
+#cube #hypnotoad {
+	text-align: center;
+}
+#cube #hypnotoad img{
+	margin-top: 6px;
+	margin-bottom: 6px;
+	border-radius: 8px;
+	box-shadow: 0 0 20px 10px #1a1a1a;
+}
+#cube #hypnotoad p{
+	font-family: "Lucida Console", Monaco, monospace;
+	color: #1a1a1a;
+	font-size: 110%;
+}
+.encode {
+	font-family: Webdings !important;
+}
+#cube #marc img {
+	float: left;
+	margin-left: 10px;
+	margin-right: 30px;
+	border-radius: 8px;
+	box-shadow: 0 0 20px 10px #1a1a1a;
+}
+#cube #marc ul {
+	overflow: auto;
+}	
+#cube #interests ul {
+	list-style-image: url('SNES-icon3.png');
+}
+#cube #interests ul li{
+	font-family: "Arial Black", Gadget, sans-serif;
+	/*font-family: Impact, Charcoal, sans-serif;
+	font-family: Verdana, Geneva, sans-serif;*/
+	font-weight: bold;
+	font-size: 120%;
+	color: #1a1a1a;
+}
+#cube article h2, #cube article h4 {
+	font-size: normal;
+	margin-top: 0;
+	margin-bottom: 0;
+	padding-top: 0;
+	padding-bottom: 0;
+}
+
+#cube article h2 {
+	color: #1a1a1a;
+}
+
+#cube article p {
+	font-size: medium;
+}
+
+#cube .front { 
+	background-color: rgba(255, 0, 0, 0.7);
+	background-color: rgba(0, 0, 156, 0.8);
+	background-color: rgba(0, 154, 240, 0.8);
+	-webkit-transform: rotateY(0deg) translateZ(100px); 
+}
+#cube .back { 
+	background-color: rgba(255, 255, 0, 0.7);
+	background-color: rgba(0, 0, 156, 0.8);
+	background-color: rgba(0, 154, 240, 0.8);
+	-webkit-transform: rotateY(180deg) translateZ(100px); 
+}
+#cube .right { 
+	background-color: rgba(0, 255, 0, 0.7);
+	background-color: rgba(0, 0, 156, 0.8);
+	background-color: rgba(0, 154, 240, 0.8);
+	-webkit-transform: rotateY(90deg) translateZ(100px); 
+	-moz-transform: rotateY(90deg) translateZ(100px);
+}
+#cube .left { 
+	background-color: rgba(0, 255, 255, 0.7);
+	background-color: rgba(0, 0, 156, 0.8);
+	background-color: rgba(0, 154, 240, 0.8);
+	-webkit-transform: rotateY(-90deg) translateZ(100px);
+	-moz-transform: rotateY(-90deg) translateZ(100px);
+}
+#cube .top { 
+	background-color: rgba(0, 0, 255, 0.7);
+	background-color: rgba(0, 0, 156, 0.8);
+	background-color: rgba(0, 154, 240, 0.8);
+	-webkit-transform: rotateX(90deg) translateZ(100px); 
+	-moz-transform: rotateX(90deg) translateZ(100px); 
+}
+#cube .bottom { 
+	background-color: rgba(255, 0, 255, 0.7);
+	background-color: rgba(0, 0, 156, 0.8);
+	background-color: rgba(0, 154, 240, 0.8);
+	-webkit-transform: rotateX(-90deg) translateZ(100px);
+	-moz-transform: rotateX(-90deg) translateZ(100px);
+}
+
+#cube.show-front { -webkit-transform: translateZ(-100px) rotateY(0deg); }
+#cube.show-back { -webkit-transform: translateZ(-100px) rotateY(-180deg); }
+#cube.show-right { -webkit-transform: translateZ(-100px) rotateY(-90deg); }
+#cube.show-left { -webkit-transform: translateZ(-100px) rotateY(90deg); }
+#cube.show-top { -webkit-transform: translateZ(-100px) rotateX(-90deg); }
+#cube.show-bottom { -webkit-transform: translateZ(-100px) rotateX(90deg); }

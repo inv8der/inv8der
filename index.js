@@ -27,6 +27,21 @@ server.route({
 });
 
 server.route({
+    path: '/resume_cube/{path*}',
+    method: 'GET',
+    config: {
+        cors: false,
+        handler: {
+            directory: {
+                path: './public/resume_cube/',
+                listing: false,
+                index: false
+            }
+        }
+    }
+});
+
+server.route({
 	path: '/md5crack/{hash}',
 	method: 'GET',
 	config: {
