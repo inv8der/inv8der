@@ -42,6 +42,21 @@ server.route({
 });
 
 server.route({
+    path: '/splunk_visualizer/{path*}',
+    method: 'GET',
+    config: {
+        cors: false,
+        handler: {
+            directory: {
+                path: './public/splunk_visualizer/',
+                listing: false,
+                index: false
+            }
+        }
+    }
+});
+
+server.route({
 	path: '/md5crack/{hash}',
 	method: 'GET',
 	config: {

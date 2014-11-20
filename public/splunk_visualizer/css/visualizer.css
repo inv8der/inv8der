@@ -1,0 +1,325 @@
+.hidden {
+    display: none !important;
+}
+
+body {
+    margin: 0;
+}
+
+div.modal {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.4);
+    visibility: hidden;
+}
+
+div.modal .content {
+    position: relative;
+    margin: 100px auto 0 auto;
+    top: 0;
+    width: 600px;
+    height: 400px;
+    border: 2px solid black;
+    border-radius: 4px;
+    overflow: hidden;
+    background-color: #ddd;
+}
+
+div.modal .content > * {
+    display: table;
+    width: 100%;
+    height: 100%;
+}
+
+#container {
+    margin: 0 auto;
+    width: 80%;
+}
+
+#createChart {
+    display: inline-block;
+    vertical-align: middle;
+    border: 2px dashed black;
+    border-radius: 2px;
+    background-image: url(../images/add.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 100px 100px;
+    background-color: #eee;
+    width: 200px;
+    height: 200px;
+    margin: 50px 100px;
+}
+
+#chartContainer {
+    text-align: center;
+}
+
+#chartContainer > * {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+#dataTableContainer {
+    display: block;
+    width: 100%;
+    height: 200px;
+    overflow: scroll;
+}
+
+.quantity-sold {
+    fill: #FFA710;
+}
+
+.quantity-sold:hover {
+    fill: #FFB310;
+    /*cursor: pointer;*/
+}
+
+.quantity-unsold {
+    fill: #2859ED;
+}
+
+.quantity-unsold:hover {
+    fill: #2274EC;
+    /*cursor: pointer;*/
+}
+
+.axis text {
+    font: 10px sans-serif;
+}
+
+.axis path,
+.axis line {
+    fill: none;
+    stroke: #000;
+    shape-rendering: crispEdges;
+}
+
+div.chartDesigner {
+    text-align: center;
+    vertical-align: middle;
+    display: table-cell;
+}
+
+div.chartDesigner svg {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+div.chartDesigner .yAxis {
+    margin-left: -80px;
+    display: inline-block;
+    vertical-align: middle;
+    line-height: 200px;
+    width: 80px;
+}
+
+div.chartDesigner .yAxis select {
+    transform: rotateZ(-90deg);
+    -webkit-transform: rotateZ(-90deg);
+    -ms-transform: rotateZ(-90deg);
+    -moz-transform: rotateZ(-90deg);
+    -o-transform: rotateZ(-90deg);
+}
+
+div.chartDesigner .xAxis {
+    margin-top: 20px;
+    display: block;
+    width: 100%;
+}
+
+div.filterPanel {
+    position: absolute;
+    width: 80%;
+    height: 60%;
+    top: -56%;
+    transition: top ease 200ms;
+    margin-left: 10%;
+}
+
+div.filterPanel:hover {
+    top: 0;
+}
+
+div.filterPanel::after {
+    content: '';
+    position: absolute;
+    background-image: url(../images/arrow_down.png);
+    bottom: 0px;
+    height: 36px;
+    bottom: -36px;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+div.filterPanel:hover::after {
+    background:none;
+}
+
+div.filterPanel .dataFilter * {
+    visibility: hidden;
+}
+
+div.filterPanel:hover .dataFilter * {
+    visibility: visible;
+}
+
+div.dataFilter {
+    display: table;
+    background: #315E68;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border: 2px solid black;
+    border-top: 0;
+    text-align: center;
+    color: white;
+    font-family: sans-serif;
+}
+
+div.dataFilter .filterList {
+    display: table-cell;
+    width: 100%;
+    padding: 20px;
+    text-align: left;
+}
+
+div.dataFilter .filterList:after {
+    content: 'Filters';
+    position: absolute;
+    bottom: 10px;
+    width: 100%;
+    left: 0;
+    text-align: center;
+    font-size: 20px;
+}
+
+div.dataFilter .filterList > * {
+    display: inline-block;
+    vertical-align: middle;
+    border: 2px solid black;
+    border-radius: 4px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 60px 60px;
+    background-color: #eee;
+    width: 64px;
+    height: 64px;
+    margin: 5px;
+    padding: 5px;
+}
+
+div.dataFilter .filterList div.filter {
+    background-image: url(../images/filter.png);
+}
+
+div.dataFilter .filterList div.addFilter {
+    background-image: url(../images/add.png);
+    border: 2px solid black;
+}
+
+.createNewFilter {
+    display: table-cell;
+    width: 100%;
+    vertical-align: top;
+    padding-top: 10%;
+}
+
+.createNewFilter select {
+    height: 28px;
+    font-size: 100%;
+}
+
+.createNewFilter label {
+    margin-right: 10px;
+}
+
+.createNewFilter form {
+    margin: 20px;
+}
+
+.createNewFilter form span {
+    font-size: 60px;
+    height: 60px;
+    width: 60px;
+    vertical-align: middle;
+    margin: 0 20px;
+}
+
+.createNewFilter form input[type="text"],
+.createNewFilter form input[type="date"] {
+    height: 50px;
+    width: 50px;
+    text-align: center;
+    font-size: 16px;
+    font-family: sans-serif;
+}
+.createNewFilter form input[type="date"] {
+    width: 160px;
+}
+
+.createNewFilter form ul {
+    padding: 0;
+    text-align: left;
+    margin-left: 25%;
+}
+
+.createNewFilter form ul > li {
+    list-style-type: none;
+    display: inline-block;
+    width: 50%;
+    margin: 2px 0;
+}
+
+.widget button.add,
+.widget button.cancel {
+    background-position: center;
+    background-repeat: no-repeat;
+    background-color: transparent;
+    border: none;
+    width: 48px;
+    height: 48px;
+    position: absolute;
+    bottom: 10px;
+}
+
+.widget button.add {
+    background-image: url(../images/add3.png);
+    right: 10px;
+}
+
+.widget button.cancel {
+    background-image: url(../images/cancel.png);
+    left: 10px;
+}
+
+div.dataTable table {
+    text-align: center;
+    border-collapse: collapse;
+    font-family: sans-serif;
+    border: 1px solid black;
+    width: 100%;
+}
+
+div.dataTable table td {
+    font-size: 14px;
+    background-color: #eee;
+}
+
+div.dataTable table th {
+    background-color: #315E68;
+    color: white;
+}
+
+div.dataTable table td, 
+div.dataTable table th {
+    border: 1px solid black;
+    border-bottom: 1px solid #aaa;
+    padding: 6px 10px;
+}
