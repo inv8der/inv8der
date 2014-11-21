@@ -103,8 +103,6 @@ visualizer.widgets = {};
                             max = filter.range[1];
 
                         if (_this.collection.__meta__.attributeInfo[attr].dataType == 'Date') {
-                            var check1 = (value.equals(min) || value > min);
-                            var check2 = (value.equals(max) || value < max);
                             return (value.equals(min) || value > min) && (value.equals(max) || value < max);
                         }
 

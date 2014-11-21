@@ -112,7 +112,7 @@ visualizer.views = {};
                 .attr('transform', function(d, i) { 
                     var val = d[_this.iv];
                     if (val instanceof Date) {
-                        val = val.getMonth() + '/' + val.getDate() + '/' + val.getFullYear();
+                        val = val.toString();
                     }
                     return 'translate(' + _this.x(val) +',0)'; 
                 });

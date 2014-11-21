@@ -27,6 +27,8 @@
     <script type="text/javascript">
         var DataModel = Backbone.Model.extend({
             parse: function(data, options) {
+                // TODO: Don't assume the data has certain attributes. Programmatically detect if 
+                // attribute is a Date, Number, or String object.
                 data.date = new Date(data.date);
                 data['quantity-sold'] = parseInt(data['quantity-sold']);
                 data['quantity-unsold'] = parseInt(data['quantity-unsold']);
@@ -50,6 +52,8 @@
         });
 
         $(document).ready(function() {
+            $(document).tooltip({track: true});
+
             $('button#createChart').on('click', function() {
                 var widget = new visualizer.widgets.ChartDesigner({
                     collection: data
