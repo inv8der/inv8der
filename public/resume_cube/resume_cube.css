@@ -32,15 +32,16 @@ html, body {
 	position: relative;
 	color: white;
 	font-family: Arial, sans-serif;
-	-webkit-perspective: 1000;
-	-moz-perspective: 1000;
+	-moz-perspective: 1000px;
+	-webkit-perspective: 1000px;
+	perspective: 1000px;
 }
 #cube {
 	width: 100%;
 	height: 100%;
 	position: absolute;
-	-webkit-transform-style: preserve-3d;
-	-webkit-transform: translateZ(-100px) rotate3d(1,0,1,-55deg);
+	transform-style: preserve-3d;
+	transform: translateZ(-100px) rotate3d(1,0,1,-55deg);
 }
 #cube figure {
 	overflow: hidden;
@@ -133,46 +134,42 @@ html, body {
 	background-color: rgba(255, 0, 0, 0.7);
 	background-color: rgba(0, 0, 156, 0.8);
 	background-color: rgba(0, 154, 240, 0.8);
-	-webkit-transform: rotateY(0deg) translateZ(100px); 
+	transform: rotateY(0deg) translateZ(100px); 
 }
 #cube .back { 
 	background-color: rgba(255, 255, 0, 0.7);
 	background-color: rgba(0, 0, 156, 0.8);
 	background-color: rgba(0, 154, 240, 0.8);
-	-webkit-transform: rotateY(180deg) translateZ(100px); 
+	transform: rotateY(180deg) translateZ(100px); 
 }
 #cube .right { 
 	background-color: rgba(0, 255, 0, 0.7);
 	background-color: rgba(0, 0, 156, 0.8);
 	background-color: rgba(0, 154, 240, 0.8);
-	-webkit-transform: rotateY(90deg) translateZ(100px); 
-	-moz-transform: rotateY(90deg) translateZ(100px);
+	transform: rotateY(90deg) translateZ(100px); 
 }
 #cube .left { 
 	background-color: rgba(0, 255, 255, 0.7);
 	background-color: rgba(0, 0, 156, 0.8);
 	background-color: rgba(0, 154, 240, 0.8);
-	-webkit-transform: rotateY(-90deg) translateZ(100px);
-	-moz-transform: rotateY(-90deg) translateZ(100px);
+	transform: rotateY(-90deg) translateZ(100px);
 }
 #cube .top { 
 	background-color: rgba(0, 0, 255, 0.7);
 	background-color: rgba(0, 0, 156, 0.8);
 	background-color: rgba(0, 154, 240, 0.8);
-	-webkit-transform: rotateX(90deg) translateZ(100px); 
-	-moz-transform: rotateX(90deg) translateZ(100px); 
+	transform: rotateX(90deg) translateZ(100px); 
 }
 #cube .bottom { 
 	background-color: rgba(255, 0, 255, 0.7);
 	background-color: rgba(0, 0, 156, 0.8);
 	background-color: rgba(0, 154, 240, 0.8);
-	-webkit-transform: rotateX(-90deg) translateZ(100px);
-	-moz-transform: rotateX(-90deg) translateZ(100px);
+	transform: rotateX(-90deg) translateZ(100px);
 }
 
-#cube.show-front { -webkit-transform: translateZ(-100px) rotateY(0deg); }
-#cube.show-back { -webkit-transform: translateZ(-100px) rotateY(-180deg); }
-#cube.show-right { -webkit-transform: translateZ(-100px) rotateY(-90deg); }
-#cube.show-left { -webkit-transform: translateZ(-100px) rotateY(90deg); }
-#cube.show-top { -webkit-transform: translateZ(-100px) rotateX(-90deg); }
-#cube.show-bottom { -webkit-transform: translateZ(-100px) rotateX(90deg); }
+#cube.show-front { transform: translateZ(-100px) rotateY(0deg); }
+#cube.show-back { transform: translateZ(-100px) rotateY(-180deg); }
+#cube.show-right { transform: translateZ(-100px) rotateY(-90deg); }
+#cube.show-left { transform: translateZ(-100px) rotateY(90deg); }
+#cube.show-top { transform: translateZ(-100px) rotateX(-90deg); }
+#cube.show-bottom { transform: translateZ(-100px) rotateX(90deg); }
