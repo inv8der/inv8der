@@ -130,7 +130,10 @@ visualizer.views = {};
                         return _this.height - _this.y(val);
                     })
                     .attr('width', this.x.rangeBand)
-                    .attr('class', 'bar ' + _this.order[j]);
+                    .attr('class', 'bar ' + _this.order[j])
+                    .attr('title', function(d, i) {
+                        return _this.order[j] + ': ' + d[_this.order[j]]
+                    });
             }
 
             var xAxis = d3.svg.axis()

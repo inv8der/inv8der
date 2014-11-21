@@ -154,9 +154,9 @@ visualizer.widgets = {};
                 '</div>' +
             '</div>',
         dateRange: 
-            '<input class="from" type="date"></input>' +
+            '<input class="from" type="date" placeholder="yyyy-mm-dd"></input>' +
             '<span>&#10145;</span>' +
-            '<input class="to" type="date"></input>',
+            '<input class="to" type="date" placeholder="yyyy-mm-dd"></input>',
         numberRange:
             '<input class="min" type="text"></input>' +
             '<span>&#10145;</span>' +
@@ -307,7 +307,8 @@ visualizer.widgets = {};
         },
 
         validateNumber: function(event) {
-            return (event.charCode >= 48 && event.charCode <= 57);
+            // Simple method to ensure input only accepts numbers
+            return (event.charCode >= 48 && event.charCode <= 57 || event.charCode == 8);
         }
         /******* END EVENT HANDLERS ******/
     });

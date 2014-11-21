@@ -8,7 +8,7 @@ visualizer = {};
     // it may not play nicely with other modules/libraries, but it's a quick
     // fix for this app.
     Date.prototype.toString = function() {
-        return this.getMonth() + '/' + this.getDate() + '/' + this.getFullYear();
+        return (this.getMonth()+1) + '/' + this.getDate() + '/' + this.getFullYear();
     };
 
     Date.prototype.equals = function(dateObj) {

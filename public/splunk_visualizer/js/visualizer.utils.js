@@ -8,6 +8,8 @@ visualizer.utils = {};
     var MAX_DATE = new Date(8640000000000000);
     var MIN_DATE = new Date(-8640000000000000);
 
+    var dateRegex = /\d{4}-\d{2}-\d{2}/;
+
     var inspect = function(collection) {
         var attributeInfo = {};
 
@@ -88,6 +90,12 @@ visualizer.utils = {};
     };
 
     var parseDateInput = function(dateStr) {
+        // Basic check to see if date string is valid. Expected format is yyyy-mm-dd, which
+        // is how values are returned from querying a date input field.
+        if (!dateRegex.test(dateStr)) {
+            return null;
+        }
+
         var parts = dateStr.split('-');
         parts.push(parts.shift());
         return new Date(parts.join('/'));
