@@ -42,6 +42,21 @@ server.route({
 });
 
 server.route({
+    path: '/googly/{path*}',
+    method: 'GET',
+    config: {
+        cors: false,
+        handler: {
+            directory: {
+                path: './public/googly/',
+                listing: false,
+                index: false
+            }
+        }
+    }
+});
+
+server.route({
     path: '/splunk_visualizer/{path*}',
     method: 'GET',
     config: {

@@ -1,0 +1,244 @@
+
+<html>
+<head>
+	<title>Nom Nom</title>
+	<script type="text/javascript" src="jquery-1.8.3.min.js"></script>
+</head>
+<body>
+	<style>
+		body {
+			width: 100%;
+			height: 100%;
+			margin: 0;
+			background-color: black;
+		}
+		.mouth {
+			/*background-image: -webkit-radial-gradient(50% 82%, 40px 16px, red 50%, transparent 57%), -webkit-radial-gradient(center, 80px 30px, rgb(20,20,20) 50%, transparent 53%);*/
+			/*background-image: -webkit-radial-gradient(50% 36%, 84px 22px, white 50%, transparent 57%), -webkit-radial-gradient(center, 80px 30px, red 50%, transparent 53%);*/
+			/*-webkit-mask-image: -webkit-radial-gradient(center, 80px 30px, rgba(0,0,0,1) 50%, rgba(0,0,0,0) 53%);*/
+			background-image: -webkit-radial-gradient(50% 38%, 84px 20px, white 50%, transparent 52%), -webkit-radial-gradient(center, 85px 35px, red 50%, transparent 53%);
+			-webkit-mask-image: -webkit-radial-gradient(50% 10%, 80px 30px, rgba(0,0,0,0) 50%, rgba(0,0,0,1) 52%);
+			width: 190px;
+			height: 40px;
+		}
+		.googlyEyes {
+			display: block;
+			position: absolute;
+		}
+		.pupil {
+			background-image: -webkit-radial-gradient(center, circle, black 35%, transparent 40%);
+			top: 25px;
+			position: relative;
+			width: 40px;
+			height: 40px;
+		}
+		.eye {
+			background-image: -webkit-radial-gradient(center, circle, white 55%, black 60%, transparent 62%);
+			overflow: hidden;
+			width: 90px;
+			height: 90px;
+			position: relative;
+			background-position: 0px -90px;
+			-webkit-mask-image: -webkit-radial-gradient(center, circle, rgba(0,0,0,1) 60%, rgba(0,0,0,0) 62%);
+		}
+
+		.eyelid {
+			background-image: -webkit-linear-gradient(0deg, black 100%, transparent 100%);
+			background-repeat: no-repeat;
+			background-position: 0px -90px;
+			height: 100%;
+			width: 100%;
+			-webkit-transition: background-position 250ms linear;
+			top: -40px;
+			position: relative;
+		}
+		.right {
+			float: right;		
+		}
+		.right.pupil {
+			right: 25px;
+		}
+		.left.pupil {
+			left: 25px;
+		}
+	</style>
+	<script type="text/javascript">
+		
+		function GooglyEyes() {
+			this.centerRight = {x:0, y:0};
+			this.centerLeft = {x:0, y:0};
+			this.upperBound = 0;
+			this.id = (GooglyEyes.numInstances) ? ++GooglyEyes.numInstances : GooglyEyes.numInstances = 1;
+			
+			this.init();
+		}
+		
+		GooglyEyes.prototype.init = function() {
+			var _this = this;
+			
+			var googlyHtml =
+			'<div id="googlyEyes_' + this.id + '" class="googlyEyes">' +
+				'<div class="right eye">' +
+					'<div class="right pupil"></div>' +
+					'<div class="right eyelid"></div>' +
+				'</div>' +
+				'<div class="left eye">' +
+					'<div class="left pupil"></div>' +
+					'<div class="left eyelid"></div>' +
+				'</div>' +
+				'<div class="mouth"></div>' +
+			'</div>';
+			
+			$("body").append(googlyHtml);
+			
+			this.$me = $("#googlyEyes_"+this.id);
+			this.$leftEye = this.$me.find(".left.eye");
+			this.$rightEye = this.$me.find(".right.eye");
+			this.$leftPupil = this.$leftEye.find(".pupil");
+			this.$rightPupil = this.$rightEye.find(".pupil");
+			
+			this.$me.width(this.$leftEye.width() + this.$rightEye.width() + 10);
+			this.$me.height(this.$leftEye.height() + this.$rightEye.height() + 10);
+			
+			this.centerLeft.x = this.$leftEye.offset().left + this.$leftEye.width()/2;
+			this.centerLeft.y = this.$leftEye.offset().top + this.$leftEye.height()/2;
+			this.centerRight.x = this.$rightEye.offset().left + this.$rightEye.width()/2;
+			this.centerRight.y = this.$rightEye.offset().top + this.$rightEye.height()/2;
+			
+			// radius of eye
+			this.upperBound = this.$leftEye.width()/2 * 0.62; 
+			
+			this.blinkTimeout = setTimeout(function() { _this.blink(); }, 500 + Math.floor(Math.random()*20000));
+		}
+		
+		GooglyEyes.prototype.wander = function() {
+			var _this = this;
+			this.$me.find('.pupil').css('-webkit-transition', 'all 500ms linear');
+			this.lookAt(Math.round(Math.random()*($("body").width())), Math.round(Math.random()*($("body").height())));
+			
+			this.wanderTimeout = setTimeout(function() {
+				_this.wander();
+			}, Math.round(500 + Math.random()*10000));
+		}
+		
+		GooglyEyes.prototype.payAttention = function() {
+			clearTimeout(this.wanderTimeout);
+			this.$me.find('.pupil').css('-webkit-transition', 'none');
+		}
+		
+		GooglyEyes.prototype.lookAt = function(x, y) {
+			// Do calculations to figure out where to move pupils
+			var v = {x: x - this.centerLeft.x, y: y - this.centerLeft.y};
+			var mag = Math.sqrt(v.x*v.x + v.y*v.y);	
+			var startPos = {
+				x: this.centerLeft.x - this.$leftPupil.width()/2,
+				y: this.centerLeft.y - this.$leftPupil.height()/2
+			};
+			this.$leftPupil.offset({
+				left: (mag > this.upperBound) ? Math.round(startPos.x + this.upperBound*v.x/mag) : Math.round(startPos.x + v.x), 
+				top: (mag > this.upperBound) ? Math.round(startPos.y + this.upperBound*v.y/mag) : Math.round(startPos.y + v.y)
+			});
+			
+			v = {x: x - this.centerRight.x, y: y - this.centerRight.y};
+			mag = Math.sqrt(v.x*v.x + v.y*v.y);
+			startPos = {
+				x: this.centerRight.x - this.$rightPupil.width()/2,
+				y: this.centerRight.y - this.$rightPupil.height()/2
+			};
+			this.$rightPupil.offset({
+				left: (mag > this.upperBound) ? Math.round(startPos.x + this.upperBound*v.x/mag) : Math.round(startPos.x + v.x), 
+				top: (mag > this.upperBound) ? Math.round(startPos.y + this.upperBound*v.y/mag) : Math.round(startPos.y + v.y)
+			});
+		}
+		
+		GooglyEyes.prototype.blink = function() {
+			var _this = this;
+			this.$me.find('.eyelid').css('background-position', '0px 0px');
+			
+			setTimeout(function() {
+				_this.$me.find('.eyelid').css('background-position', '0px -90px');
+				_this.blinkTimeout = setTimeout(function() { _this.blink(); }, 500 + Math.floor(Math.random()*20000));
+			}, 250);
+		}
+		
+		GooglyEyes.prototype.teleportTo =  function(x, y) {
+			this.$me.offset({
+				left: x,
+				top: y,
+			});
+			
+			this.centerLeft.x = this.$leftEye.offset().left + this.$leftEye.width()/2;
+			this.centerLeft.y = this.$leftEye.offset().top + this.$leftEye.height()/2;
+			this.centerRight.x = this.$rightEye.offset().left + this.$rightEye.width()/2;
+			this.centerRight.y = this.$rightEye.offset().top + this.$rightEye.height()/2;
+		}
+		
+		GooglyEyes.prototype.getDimensions = function() {
+			return { w: this.$me.width(), h: this.$me.height() };
+		}
+		
+		function TheOverseer() {
+			this.googlyArray = [];
+			this.mouseCheckInterval = null;
+			this.name = "TheOverseer";
+			this.idleCnt = 0;
+		}
+		
+		TheOverseer.prototype.register = function(googlyEyes) {
+			var _this = this;
+			var regex1 = /^function\s(Array)\b/;
+			var regex2 = /^function\s(GooglyEyes)\b/;
+			
+			if (regex1.test(googlyEyes.constructor)) {
+				for (var i=0; i<googlyEyes.length; i++) {
+					if (this.googlyArray.indexOf(googlyEyes[i]) == -1 && regex2.test(googlyEyes[i].constructor)) 
+						this.googlyArray.push(googlyEyes[i]);
+				}
+			} else {
+				if (this.googlyArray.indexOf(googlyEyes) == -1 && regex2.test(googlyEyes.constructor)) 
+					this.googlyArray.push(googlyEyes);
+			}
+			
+			if (this.mouseCheckInterval == null && this.googlyArray.length > 0)
+				this.mouseCheckInterval = setInterval( function() { _this.checkMouse(); }, 50);
+		}
+		
+		TheOverseer.prototype.checkMouse = function() {
+			var _this = this;
+			
+			if (this.idleCnt == 200) {
+				for (var i=0; i<_this.googlyArray.length; i++) {
+					_this.googlyArray[i].wander();
+				}
+			}
+			this.idleCnt++;
+			
+			$(document).unbind('mousemove.' + this.name);
+			$(document).bind('mousemove.' + this.name, function (event) {
+				_this.idleCnt = 0;
+				for (var i=0; i<_this.googlyArray.length; i++) {
+					_this.googlyArray[i].payAttention();
+					_this.googlyArray[i].lookAt(event.clientX, event.clientY);
+				}				
+				$(document).unbind('mousemove.' + _this.name);
+			});
+		}
+		
+		$(document).ready(function() {
+			var god = new TheOverseer();
+			var creepyEyes = [];
+			var googly;
+			
+			for (var i=0; i<6; i++) {
+				googly = new GooglyEyes();
+				var d = googly.getDimensions();
+				googly.teleportTo(Math.round(Math.random()*($("body").width() - d.w)), Math.round(Math.random()*($("body").height() - d.h)));
+				creepyEyes.push(googly);
+			}
+			
+			god.register(creepyEyes);
+		});
+	</script>
+	
+</body>
+</html>
